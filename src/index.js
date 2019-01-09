@@ -3,14 +3,26 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux'; 
+import { createStore, applyMiddleware } from 'redux'; 
 import reducer from './reducers';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import { Router, Route} from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ &&
-                                    window.__REDUX_DEVTOOLS_EXTENSION__());
+// таким образом composeWithDevTools добавляет автоматически devtools для включения плагина 
+// redux devtools и при этом можно добавить еще middleware через запятую:
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
+
+// const history = syncHistoryWithStore(Route.hashHistory, store);
 
 ReactDOM.render(
   <Provider store={store}>
+    {/* <Router history={Route.hashHistory}>
+      <Route path="/" component={App}/>
+      <Route path="/about" component={About}/>
+      <Route path="/tracks/:id" component={Track}/>
+    </Router> */}
     <App />
   </Provider>, 
   document.getElementById('root')

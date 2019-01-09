@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
+import { getTracks } from './actions/tracks';
 //import RegistationForm from './RegistrationForm';
 
 class App extends Component {
@@ -37,6 +38,13 @@ class App extends Component {
             Find track
           </button>
         </div>
+        <div>
+          <button
+            onClick={this.props.onGetTracks}
+          >
+            Get tracks
+          </button>
+        </div>
         <ul>
           {this.props.tracks.map((track, index) => 
             <li key={index}>{track.name}</li>
@@ -61,6 +69,9 @@ export default connect(
     },
     onFindTrack: (name) => {
       dispatch({ type: 'FIND_TRACK', payload: name});
+    },
+    onGetTracks: () => {
+      dispatch(getTracks());
     }
   })
 )(App);
