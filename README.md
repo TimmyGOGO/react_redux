@@ -6,3 +6,12 @@ _link:_ https://www.youtube.com/watch?v=BS7fRPWmNZo&index=2list=PLIcAMDxr6tprSzq
 
 ### Details:
 
+1. Действия,выполняемые в 9-ом уроке дополнены 8-м уроком из tutorial по React:
+
+   _link:_ https://www.youtube.com/watch?v=8sQNXH5X7cA&index=9&list=PLIcAMDxr6tpoShAiU0Nh_nBtg19XWbCql&t=0s
+
+2. Также, используются другая библиотека для routing: 
+
+   _connected-react-router:_ https://github.com/supasate/connected-react-router 
+
+
