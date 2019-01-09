@@ -1,14 +1,16 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import './index.css';
-// import App from './App';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux'; 
 
-// ReactDOM.render(<App />, document.getElementById('root'));
+const initialState = [
+  'Smells like spirit',
+  'Enter Sandman'
+];
 
-import { createStore } from 'redux';
-
-// функция для управления данными store:
-function playlist(state = [], action) {
+function playlist(state = initialState, action) {
   if (action.type === 'ADD_TRACK') {
     return [
       ...state,
@@ -18,17 +20,40 @@ function playlist(state = [], action) {
   return state;
 }
 
-// создать store:
-const store = createStore(playlist);
+const store = createStore(playlist, window.__REDUX_DEVTOOLS_EXTENSION__ &&
+                                    window.__REDUX_DEVTOOLS_EXTENSION__());
 
-// получить состояние:
-console.log(store.getState());
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>, 
+  document.getElementById('root')
+);
 
-// подписаться на store: (получаем состояние при каждом изменении store)
-store.subscribe(() => {
-  console.log('subscribe', store.getState());
-});
+// import { createStore } from 'redux';
 
-// функция, меняющая значение в store:
-store.dispatch({ type: 'ADD_TRACK', payload: 'Smells like spirit' });
-store.dispatch({ type: 'ADD_TRACK', payload: 'Enter Sandman' });
+// // функция для управления данными store: (reducer)
+// function playlist(state = [], action) {
+//   if (action.type === 'ADD_TRACK') {
+//     return [
+//       ...state,
+//       action.payload
+//     ];
+//   }
+//   return state;
+// }
+
+// // создать store:
+// const store = createStore(playlist);
+
+// // получить состояние:
+// console.log(store.getState());
+
+// // подписаться на store: (получаем состояние при каждом изменении store)
+// store.subscribe(() => {
+//   console.log('subscribe', store.getState());
+// });
+
+// // функция, меняющая значение в store:
+// store.dispatch({ type: 'ADD_TRACK', payload: 'Smells like spirit' });
+// store.dispatch({ type: 'ADD_TRACK', payload: 'Enter Sandman' });
