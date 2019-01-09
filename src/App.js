@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { getTracks } from './actions/tracks';
+import Menu from './Menu';
+
 //import RegistationForm from './RegistrationForm';
 
 class App extends Component {
@@ -22,26 +24,21 @@ class App extends Component {
     console.log(this.props.tracks);
     return (
       <div >
+        <Menu />
         <div>
           <input type="text" ref={(input) => { this.trackInput = input }} />
-          <button 
-            onClick={this.addTrack}
-          >
+          <button onClick={this.addTrack}>
             Add track
           </button>
         </div>
         <div>
           <input type="text" ref={(input) => { this.searchInput = input }} />
-          <button 
-            onClick={this.findTrack}
-          >
+          <button onClick={this.findTrack}>
             Find track
           </button>
         </div>
         <div>
-          <button
-            onClick={this.props.onGetTracks}
-          >
+          <button onClick={this.props.onGetTracks}>
             Get tracks
           </button>
         </div>
